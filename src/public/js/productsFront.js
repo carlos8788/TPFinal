@@ -52,7 +52,7 @@ arrayProducts.forEach(product => {
                     icon: 'success',
 
                 })
-                fetch('http://localhost:8080/products', {
+                fetch('/products', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
