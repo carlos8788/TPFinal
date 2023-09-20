@@ -3,8 +3,8 @@ import { productService } from '../services/index.js';
 import CustomError from '../services/errors/customErrors.js'
 import EErrors from '../services/errors/enums.js';
 import { generateProductErrorInfo } from '../services/errors/constant.js';
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from 'fs';
+import path from 'path';
 
 const getProducts = async (req, res) => {
     try {
