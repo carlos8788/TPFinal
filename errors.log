@@ -1,0 +1,8 @@
+[33merror[39m: [33mError trying to create product[39m {"code":2,"name":"Product creation failed"}
+[33merror[39m: [33mError trying to create product[39m {"code":2,"name":"Product creation failed"}
+[33merror[39m: [33mError trying to create product[39m {"code":2,"name":"Product creation failed"}
+[33merror[39m: [33m__dirname is not defined[39m
+[33merror[39m: [33mThe "cb" argument must be of type function. Received undefined[39m {"code":"ERR_INVALID_ARG_TYPE"}
+[33merror[39m: [33mThe "cb" argument must be of type function. Received undefined[39m {"code":"ERR_INVALID_ARG_TYPE"}
+[33merror[39m: [33mThe "cb" argument must be of type function. Received undefined[39m {"code":"ERR_INVALID_ARG_TYPE"}
+[33merror[39m: [33mENOENT: no such file or directory, unlink 'M:\backendCoderHouse\39765-programación-backend\cursoBackEnd-39765\uploads\products\1694706076022-Captura de pantalla 2023-09-02 181002.png'[39m {"code":"ENOENT","errno":-4058,"path":"M:\\backendCoderHouse\\39765-programación-backend\\cursoBackEnd-39765\\uploads\\products\\1694706076022-Captura de pantalla 2023-09-02 181002.png","syscall":"unlink"}
