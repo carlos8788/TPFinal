@@ -1,5 +1,6 @@
 import express from 'express';
-import handlebars from 'express-handlebars';
+import exphbs from 'express-handlebars'; //Versión compatible con node 14
+// import handlebars from 'express-handlebars';
 import cookieParser from 'cookie-parser'
 
 import { initializePassport } from './config/passport.config.js';
@@ -34,7 +35,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookieParserEnv));
 
 
-app.engine('handlebars', handlebars.engine());
+// app.engine('handlebars', handlebars.engine());
+app.engine('handlebars', exphbs());
 
 app.use('/uploads', express.static('uploads'));
 app.set('views', `${__dirname}/views`);
