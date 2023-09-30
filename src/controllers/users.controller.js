@@ -96,7 +96,7 @@ const changeRoleByAdmin = async (req, res) => {
         let newRole;
         (role === 'premium') ? newRole = 'user' : newRole = 'premium'
         const user = await userService.changeUserService(userId, newRole)
-        
+
         return res.sendSuccess()
     } catch (error) {
         return res.sendInternalError(error)
@@ -106,7 +106,18 @@ const changeRoleByAdmin = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const userId = req.params.uid
-        console.log(userId);
+        // console.log(userId);
+        const result = await userService.deleteUserService(userId)
+        console.log(result);
+        return res.sendSuccess()
+    } catch (error) {
+        return res.sendInternalError(error)
+    }
+}
+
+const userExpired = async (req, res) => {
+    try {
+        console.log(req.body);
         return res.sendSuccess()
     } catch (error) {
         return res.sendInternalError(error)
@@ -120,6 +131,7 @@ export default {
     uploadHandler,
     allUsers,
     changeRoleByAdmin,
-    deleteUser
+    deleteUser,
+    userExpired
 }
 

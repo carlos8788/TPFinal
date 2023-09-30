@@ -40,4 +40,8 @@ export default class UserService{
     getUserDocumentsService = (id) => {
         return this.dao.getDocuments(id)
     }
+
+    deleteUserService = (id) => {
+        return this.dao.deleteUser(id)
+    }
 }

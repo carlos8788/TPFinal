@@ -10,5 +10,6 @@ export default class UserRouter extends BaseRouter {
         this.get('/', ['ADMIN'], passportCall('jwt', { strategyType: 'jwt' }), userControllers.allUsers)
         this.patch('/:uid', ['ADMIN'], passportCall('jwt', { strategyType: 'jwt' }), userControllers.changeRoleByAdmin)
         this.delete('/:uid', ['ADMIN'], passportCall('jwt', { strategyType: 'jwt' }), userControllers.deleteUser)
+        this.post('/user-expired', ['PUBLIC'], passportCall('jwt', { strategyType: 'jwt' }), userControllers.userExpired)
     }
 }
