@@ -7,20 +7,20 @@ const changeUserRole = async (req, res) => {
         let role;
 
         if (req.body.role === 'user') {
-            
+
             const documents = await userService.getUserDocumentsService(req.user.id);
             const typesNeeded = ['dni', 'domicilio', 'cuenta'];
             const typesFound = documents.map(doc => doc.type);
             const hasAllTypes = typesNeeded.every(type => typesFound.includes(type));
-            
-            if(!hasAllTypes) return res.sendUnauthorized('Not authorized')
-            
+
+            if (!hasAllTypes) return res.sendUnauthorized('Not authorized')
+
         };
 
         (req.body.role === 'user') ? role = 'premium' : role = 'user';
 
         req.user.role = role;
-        
+
         const userUpdate = await userService.changeUserService(req.params.uid, role);
         const user = {
             name: `${userUpdate.first_name} ${userUpdate.last_name}`,
@@ -39,7 +39,7 @@ const changeUserRole = async (req, res) => {
 
 
     } catch (error) {
-        
+
         return res.sendInternalError(error)
     }
 };
@@ -64,7 +64,7 @@ const uploadHandler = async (req, res) => {
             reference: `/uploads/${type}s/${file.filename}`,
             type: document_type
         }));
-        
+
         const response = await userService.updateUserDocumentsService(uid, type, documents);
 
         if (response.error) {
@@ -79,13 +79,47 @@ const uploadHandler = async (req, res) => {
     }
 };
 
+const allUsers = async (req, res) => {
+    try {
+        const result = await userService.getUsersService()
+        return res.sendSuccessWithPayload(result)
 
+    } catch (error) {
+        return res.sendInternalError(error)
+    }
+}
 
+const changeRoleByAdmin = async (req, res) => {
+    try {
+        const userId = req.params.uid
+        const { role } = req.body
+        let newRole;
+        (role === 'premium') ? newRole = 'user' : newRole = 'premium'
+        const user = await userService.changeUserService(userId, newRole)
+        
+        return res.sendSuccess()
+    } catch (error) {
+        return res.sendInternalError(error)
+    }
+}
+
+const deleteUser = async (req, res) => {
+    try {
+        const userId = req.params.uid
+        console.log(userId);
+        return res.sendSuccess()
+    } catch (error) {
+        return res.sendInternalError(error)
+    }
+}
 
 
 
 export default {
     changeUserRole,
-    uploadHandler
+    uploadHandler,
+    allUsers,
+    changeRoleByAdmin,
+    deleteUser
 }
 

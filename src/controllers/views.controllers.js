@@ -268,8 +268,14 @@ const getRegisterView = (req, res) => {
 const getProfileView = (req, res) => {
     try {
         delete req.user.password
-
-        res.render('profile', { user: req.user, isLoggedIn: req.user, premium: req.user.role === 'premium' })
+        console.log(req.user);
+        res.render(
+            'profile',
+             { user: req.user, 
+                isLoggedIn: req.user, 
+                premium: req.user.role === 'premium',
+                admin: req.user.role === 'ADMIN'
+            })
 
     } catch (error) {
         req.logger.error(error)
@@ -302,16 +308,8 @@ const getAllTicketView = (req, res) => {
 
 const getAdminView = async (req, res) => {
     try {
-        // const cotizacion = await getDollarRate();
-        const cotizacion = 367.69
-        const dollar = {
-            compra: cotizacion - 20,
-            venta: cotizacion,
-            imp1: cotizacion * 1.30,
-            imp2: cotizacion * 1.30 + cotizacion *  0.45
-        }
         const logged = Object.values(req.user).every(property => property)
-        return res.render('admin', { isLoggedIn: logged , 'dollar': dollar });
+        return res.render('admin', { isLoggedIn: logged});
     } catch (error) {
         req.logger.error(error)
         return res.sendInternalError(error)
@@ -370,6 +368,9 @@ const restorePasswordView = (req, res) => {
         return res.sendInternalError(error)
     }
 }
+const userViews = (req, res) => {
+    return res.render('userViews')
+}
 
 
 export default {
@@ -390,5 +391,7 @@ export default {
     generateProductView,
     premiumView,
     restoreRequestView,
-    restorePasswordView
+    restorePasswordView,
+    userViews,
+    
 }

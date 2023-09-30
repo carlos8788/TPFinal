@@ -3,3 +3,5 @@
 package-lock.json
 mock_data.json
 .env
+*.log
+test.js

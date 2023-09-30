@@ -60,8 +60,6 @@ arrayProducts.forEach(product => {
                     body: JSON.stringify({ product: { _id: product.id, quantity: Number(response.value) } }),
                 }).then(() =>productsInCart())
 
-                
-
             }
             else if (Number(response.value) < 0) {
                 Swal.fire({

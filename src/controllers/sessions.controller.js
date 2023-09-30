@@ -111,7 +111,7 @@ const restoreRequest = async (req, res) => {
 
     const html = `<div>
                     <h1>Restore Password</h1>
-                    <p>You can reset your password <a href="http://localhost:8080/restorePassword?token=${restoreToken}">in this link</a></p>
+                    <p>You can reset your password <a href="${config.url}/restorePassword?token=${restoreToken}">in this link</a></p>
                     </div>`
     const result = await transport.sendMail({
         from: 'BBM',

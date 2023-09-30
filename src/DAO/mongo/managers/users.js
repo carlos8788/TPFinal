@@ -2,9 +2,9 @@ import userModel from "../models/user.js";
 
 export default class UserManager {
 
-    getUsers = (params) => {
+    getUsers = () => {
         try {
-            return userModel.find(params).lean();
+            return userModel.find().lean();
 
         } catch (error) {
             return error
@@ -136,6 +136,14 @@ export default class UserManager {
             
         } catch (error) {
             return error
+        }
+    }
+
+    deleteUser = async (uid) => {
+        try {
+            return await userModel.findOneAndDelete({_id: uid})
+        } catch (error) {
+            
         }
     }
 

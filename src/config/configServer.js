@@ -16,4 +16,3 @@ const connectToDB = () => {
 };
 
 export default connectToDB
-

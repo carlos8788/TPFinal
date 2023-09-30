@@ -57,7 +57,6 @@ class CartManager {
                     { $inc: { "products.$.quantity": productFromBody.quantity } })
                 return await cartModel.findOne({ _id: cid })
             }
-
             await cartModel.updateOne(
                 { _id: cid },
                 {
@@ -69,14 +68,10 @@ class CartManager {
                     }
                 })
             return await cartModel.findOne({ _id: cid })
-
-
         }
 
         catch (err) {
-            
             return err
-
         }
     }
 

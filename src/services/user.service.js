@@ -2,8 +2,8 @@ export default class UserService{
     constructor(dao){
         this.dao = dao;
     }
-    getUsersService = (params) => {
-        return this.dao.getUsers(params)
+    getUsersService = () => {
+        return this.dao.getUsers()
     }
     getUsersByIdService = (id) => {
         return this.dao.getUsersById(id)

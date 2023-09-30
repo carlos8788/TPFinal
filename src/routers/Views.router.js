@@ -43,6 +43,7 @@ export default class ViewsRouter extends BaseRouter {
 
         this.get('/restorePassword', ['NO_AUTH'], passportCall('jwt', { strategyType: "jwt" }), viewsControllers.restorePasswordView) //USER //
         
+        this.get('/allUsers', ['ADMIN'], passportCall('jwt', { strategyType: "jwt" }), viewsControllers.userViews)
     }
 
 }
