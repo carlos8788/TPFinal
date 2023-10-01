@@ -109,7 +109,7 @@ const deleteUser = async (req, res) => {
         const userId = req.params.uid
         // console.log(userId);
         const result = await userService.deleteUserService(userId)
-        console.log(result);
+        // console.log(result);
         return res.sendSuccess()
     } catch (error) {
         return res.sendInternalError(error)
@@ -132,7 +132,8 @@ const userExpired = async (req, res) => {
                     html: html,
                     attachments: []
                 })
-                console.log(user);
+
+                const userDelete = await userService.deleteUserService(user._id)
             }
         }
         // console.log(req.body);
