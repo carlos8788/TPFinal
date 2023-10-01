@@ -117,7 +117,11 @@ const deleteUser = async (req, res) => {
 
 const userExpired = async (req, res) => {
     try {
-        console.log(req.body);
+        const users = req.body
+        if(users) {
+            users.forEach(user => console.log(user._id, 'ID'))
+        }
+        // console.log(req.body);
         return res.sendSuccess()
     } catch (error) {
         return res.sendInternalError(error)
