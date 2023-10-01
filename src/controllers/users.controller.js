@@ -1,5 +1,6 @@
 import { userService } from "../services/index.js";
 import { generateToken } from "../config/config.jwt.js";
+import { transport } from "../utils/mailer.js";
 
 const changeUserRole = async (req, res) => {
     try {
@@ -118,8 +119,21 @@ const deleteUser = async (req, res) => {
 const userExpired = async (req, res) => {
     try {
         const users = req.body
-        if(users) {
-            users.forEach(user => console.log(user._id, 'ID'))
+        if (users) {
+            for (const user of users) {
+                const html = `<div>
+                    <h1>User Expired</h1>
+                    <p>Your user was terminated due to inactivity, you will have to register again</p>
+                    </div>`
+                const result = await transport.sendMail({
+                    from: 'BBM',
+                    to: user.email,
+                    subject: 'User Expired',
+                    html: html,
+                    attachments: []
+                })
+                console.log(user);
+            }
         }
         // console.log(req.body);
         return res.sendSuccess()
