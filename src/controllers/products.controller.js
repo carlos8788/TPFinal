@@ -238,7 +238,7 @@ const deleteProduct = async (req, res) => {
     try {
         const { pid } = req.params
         const product = await productService.getProductByIdService(pid)
-        console.log(product);
+        // console.log(product);
         // try {
         //     if (product.thumbnails[0]) {
         //         await fs.promises.unlink(path.resolve(product.thumbnails[0])), (err) => {
@@ -251,7 +251,7 @@ const deleteProduct = async (req, res) => {
         //         res.status(400).json({ error: 'File path is required' });
         //     }
         // } catch (error) {
-        //     console.log(error);
+        //     req.logger.error(error)
         // }
         // finally {
         // console.log(product.owner === req.user.email || req.user.role === 'ADMIN');

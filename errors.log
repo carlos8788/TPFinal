@@ -17,3 +17,5 @@
 [33merror[39m: [33mres.internalError is not a function[39m
 [33merror[39m: [33mError deleting file: ENOENT: no such file or directory, unlink 'E:\Cursos 2022\BackEnd CoderHouse\TPFinalBackEndCoderHouse\http:\dummyimage.com\102x100.png\5fa2dd\ffffff'[39m
 [33merror[39m: [33mtransport is not defined[39m
+[33merror[39m: [33mtransport is not defined[39m
+[33merror[39m: [33mproduct is not defined[39m

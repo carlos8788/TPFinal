@@ -1,5 +1,5 @@
 import { userService, productService, cartService, ticketsService } from '../services/index.js'
-
+import { transport } from '../utils/mailer.js'
 
 const getUserCarts = async (req, res) => {
 
@@ -237,7 +237,17 @@ const purchaseCart = async (req, res) => {
                 productPurchase.push(product);
             }
         }
-
+        // console.log(productPurchase);
+        let listProducts = '';
+        productPurchase.forEach(prod => {
+            listProducts += `<li>
+                                <h3>Name: ${prod._id.title}</h3>
+                                <p>Quantity: ${prod.quantity}</p>
+                                <p>Subtotal: ${prod._id.price * prod.quantity}</p>
+                            </li>`
+        })
+        console.log(listProducts);
+        
         amount = Number(amount.toFixed(2))
 
         const preTicket = {
@@ -245,6 +255,19 @@ const purchaseCart = async (req, res) => {
             cart: cid,
             amount
         }
+
+        const html = `<div>
+                        <h1>Purchase completed</h1>
+                        <div>${listProducts}</div>
+                        <p>Total: ${preTicket.amount}</p>
+                        </div>`
+            const sendEmail = await transport.sendMail({
+                from: 'BBM',
+                to: req.user.email,
+                subject: 'Purchase completed',
+                html: html,
+                attachments: []
+            })
 
         if (!amount) return res.status(403).send({ message: 'Products not available' });
         await ticketsService.addTicketService(preTicket)
