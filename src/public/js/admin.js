@@ -1,8 +1,62 @@
 
-
+const allProducts = document.getElementById('allProducts')
 const productsStock = document.getElementById('productsStock')
 const productsInFront = document.getElementById('productsInFront')
 const formUpdate = document.getElementById('formUpdate')
+let products;
+
+allProducts.addEventListener('click', () => {
+    products = ''
+    fetch('/api/products')
+        .then(response => response.json())
+        .then(data => {
+            data.payload.forEach(prod => {
+                // console.log(prod)
+                products += `<div class='container'>
+                                <h3 class='my-3'>
+                                    name:${prod.title} - owner:${prod.owner}
+                                </h3> 
+                                <a class='mx-2 btn btn-danger delete-product' id=${prod._id}>
+                                    Delete
+                                </a>
+                            </div>`
+            })
+            productsInFront.innerHTML = products;
+            let deleteButtons = document.querySelectorAll('.delete-product');
+
+            // Paso 3: Agregar el evento a cada botón
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault(); // Previene la acción por defecto del enlace
+
+                    fetch(`/api/products/${e.target.id}`, {
+                        method: 'DELETE',
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.status === 'success') {
+                                e.target.parentElement.remove();  // Eliminar el producto del frontend
+                                Swal.fire({
+                                    title: `The product was deleted`,
+                                    icon: 'success',
+                                })
+                            } else {
+                                console.error('Error al eliminar el producto');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error al llamar al API:', error);
+                        });
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener productos:', error);
+        });
+})
+
+
 
 
 
@@ -29,7 +83,7 @@ let updatedProduct = {
 
 const productsFromDB = () => {
 
-    let products = '';
+    products = '';
     fetch('/api/products?filterStock=20')
         .then(response => response.json())
         .then(data => {
@@ -70,7 +124,7 @@ const productsFromDB = () => {
             });
 
         })
-        .catch(error => {throw new Error(error)});
+        .catch(error => { throw new Error(error) });
 }
 
 productsStock.addEventListener('click', () => {
@@ -111,7 +165,7 @@ document.getElementById('productForm').addEventListener('submit', (event) => {
             }
         })
 
-        .catch(error => {throw new Error(error)});
+        .catch(error => { throw new Error(error) });
     const modalElement = document.getElementById('productModal');
     const modal = bootstrap.Modal.getInstance(modalElement);
     modal.hide();
@@ -144,7 +198,7 @@ formUpdate.addEventListener('submit', async event => {
             productsFromDB();
         }
 
-    } catch{(error => {throw new Error(error)})};
+    } catch { (error => { throw new Error(error) }) };
 
 
 });
