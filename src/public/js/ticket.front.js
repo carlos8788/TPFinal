@@ -125,7 +125,7 @@ const purchaseCart = (cartID) => {
             data = await response.json()
             Swal.fire(
                 'Success!',
-                data.message,
+                'Su compra fue realizada exitosamente, pronto recibirá un email',
                 'success'
             )
             setTimeout(() => {
