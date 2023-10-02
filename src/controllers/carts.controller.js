@@ -50,7 +50,7 @@ const postCart = async (req, res) => {
             req.logger.warning('Type Error')
             return res.sendNotFound({ status: 'error', message: 'TypeError' })};
 
-        // Corroborar si todos los ID de los productos existen
+        
         const results = await Promise.all(products.map(async (product) => {
             const checkId = await productService.getProductByIdService(product._id);
             if (checkId === null || typeof (checkId) === 'string') return `The ID product: ${product._id} not found`

@@ -52,6 +52,3 @@ try {
 } catch{(error => {throw new Error(error)})};
 
 
-// ticketsView.addEventListener('click', () => {
-//     window.location.href = '/allTickets'
-// })

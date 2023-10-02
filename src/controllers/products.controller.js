@@ -287,40 +287,7 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-// const deleteProduct = async (req, res) => {
-//     try {
-//         const { pid } = req.params;
 
-//         const product = await productService.getProductByIdService(pid);
-
-//         if (product.owner !== req.user.email || req.user !== 'ADMIN') {
-//             return res.sendInternalError('Forbidden! You cannot delete this product');
-//         }
-
-//         const result = await productService.deleteProductService(pid);
-//         console.log('DB Deletion Result:', result);
-
-//         if (!result) {
-//             return res.status(404).send({ message: `ID: ${pid} not found` });
-//         }
-
-//         // if (product.thumbnails[0]) {
-//         //     try {
-//         //         await fs.promises.unlink(path.resolve(product.thumbnails[0]));
-//         //         console.log('File deleted successfully');
-//         //     } catch (fileError) {
-//         //         console.log('Error deleting file:', fileError.message);
-//         //     }
-//         // } else {
-//         //     console.log('File path is required');
-//         // }
-
-//         return res.sendSuccess(`ID: ${pid} was deleted`);
-//     } catch (error) {
-//         console.log('Main error:', error);
-//         return res.internalError(error.message);
-//     }
-// }
 
 
 const getProductsFromPremium = async (req, res) => {

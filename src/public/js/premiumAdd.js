@@ -48,43 +48,7 @@ addP.addEventListener('click', () => {
 })
 
 const productForm = () => {
-    // document.getElementById('product-form').addEventListener('submit', (event) => {
-    //     event.preventDefault();
-    //     let product = Object.fromEntries(new FormData(event.target))
-        
-    //     product.status = product.status === 'on';
-    //     product.documents = [product.thumbnails]
-    //     product.price = Number(product.price)
-    //     product.stock = Number(product.stock)
-    //     fetch('api/products', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(product)
-    //     })
-    //         .then(response => {
-    //             if (response.ok) {
-    //                 Swal.fire({
-    //                     title: 'Success',
-    //                     text: 'Product added successfully',
-    //                     icon: 'success'
-    //                 })
-
-
-    //             } else {
-    //                 Swal.fire({
-    //                     title: 'Error',
-    //                     text: 'Product not added',
-    //                     icon: 'error'
-    //                 })
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             throw new Error(error);
-    //         })
-    //     document.getElementById('product-form').reset()
-    // })
+    
     document.getElementById('product-form').addEventListener('submit', (event) => {
         event.preventDefault();
         

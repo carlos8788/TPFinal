@@ -107,9 +107,9 @@ const changeRoleByAdmin = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const userId = req.params.uid
-        // console.log(userId);
+        
         const result = await userService.deleteUserService(userId)
-        // console.log(result);
+        
         return res.sendSuccess()
     } catch (error) {
         return res.sendInternalError(error)
