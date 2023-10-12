@@ -25,7 +25,7 @@ import swaggerUiExpress from 'swagger-ui-express'
 const logger = getLogger()
 
 const app = express();
-const PORT = config.port || 8080
+const PORT = config.port || 8081
 const URL = config.url || 'http://localhost:'
 
 app.use(express.json());

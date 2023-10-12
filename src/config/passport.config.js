@@ -23,25 +23,25 @@ export const initializePassport = () => {
         { passReqToCallback: true, usernameField: 'email' }, async (req, emailUser, password, done) => {
             try {
                 const { first_name, last_name, email, age, role } = req.body;
-                
+
                 if (!first_name || !last_name || !email || !age) {
 
                     CustomError.createError({
-                        name:'User creation failed',
-                        cause: generateUserErrorInfo({first_name, last_name, email, age}),
-                        message:"Error trying to create User",
+                        name: 'User creation failed',
+                        cause: generateUserErrorInfo({ first_name, last_name, email, age }),
+                        message: "Error trying to create User",
                         code: EErrors.INVALID_TYPES_ERROR
                     })
-                    
+
                 }
-                
+
                 const user = await usersService.getUsersByEmail(emailUser)
-                
+
                 if (user) {
-                    
+
                     return done(null, false, { message: 'User already exists' });
                 }
-                
+
                 const newUser = {
                     first_name,
                     last_name,
@@ -111,7 +111,7 @@ export const initializePassport = () => {
 
                     let cart = existsCart[0] ? existsCart[0]._id : await handleCart();
 
-                    
+
 
                     const user = new UserDTO(
                         {
@@ -150,15 +150,14 @@ export const initializePassport = () => {
 
             if (!user) {
 
-                let userGitHub = new UserDTO(
-                    {
-                        first_name: profile._json.login,
-                        last_name: profile._json.node_id,
-                        email: emailGitHub,
-                        password: '',
+                let userGitHub = {
+                    first_name: profile._json.login,
+                    last_name: profile._json.node_id,
+                    email: emailGitHub,
+                    password: '',
 
-                    }
-                )
+                }
+
                 const result = await usersService.createUser(userGitHub);
                 let existsCart = await cartService.getCartsByUserService(result._id)
 
@@ -176,6 +175,7 @@ export const initializePassport = () => {
             }
 
         } catch (error) {
+            console.log(error);
             return done(error);
         }
     }
